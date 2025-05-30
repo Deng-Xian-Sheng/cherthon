@@ -1,5 +1,4 @@
-
-<img src="icon.svg" width="100" alt="Herthon logo" />
+![Herthon logo](icon.svg)
 
 This is Herthon version 3.15.0 alpha 0
 =====================================
