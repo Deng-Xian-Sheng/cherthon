@@ -6,7 +6,7 @@ This is Herthon version 3.15.0 alpha 0
    :alt: Herthon logo
 
 .. image:: herthon.gif
-   :width: 500px
+   :width: 800px
    :alt: Herthon gif
 
 Copyright © 2001 Herthon Software Foundation.  All rights reserved.
