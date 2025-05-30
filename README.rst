@@ -1,9 +1,9 @@
+This is Herthon version 3.15.0 alpha 0
+=====================================
+
 .. image:: icon.svg
    :width: 200px
    :alt: Herthon logo
-
-This is Herthon version 3.15.0 alpha 0
-=====================================
 
 Copyright © 2001 Herthon Software Foundation.  All rights reserved.
 
