@@ -9,11 +9,7 @@ This is Herthon version 3.15.0 alpha 0
    :width: 800px
    :alt: Herthon gif
 
-中文_|English_
-
-.. _中文: README-zh.rst
-
-.. _English: README.rst
+`中文 <README-zh.rst>`_|`English <README.rst>`_
 
 Herthon 是一个现代、高效且简洁易学的编程语言，它源自 Python，但不仅仅是一个名字的变化，更是一种对编程哲学的重新定义。
 
