@@ -1,4 +1,4 @@
-![Herthon logo](icon.svg)
+![Herthon logo](https://raw.githubusercontent.com/Deng-Xian-Sheng/cherthon/refs/heads/main/icon.svg)
 
 This is Herthon version 3.15.0 alpha 0
 =====================================
