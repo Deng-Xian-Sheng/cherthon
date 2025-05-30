@@ -34,7 +34,7 @@ Herthon 延续 Python 的简洁语法，同时加强语义表达，让新手更�
 模块命名更自然
 Herthon 鼓励使用更具描述性和人性化的模块命名，如 feelings, empathy, mindflow，赋予编程语言更多情感色彩。
 
-新设计语言特色示例：
+新设计语言特色示例::
 
     # 打印 hello word
     print("hello word")
