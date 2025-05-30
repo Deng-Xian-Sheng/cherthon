@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herthon - 为人设计的下一代编程语言</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e83e8c;
+            --secondary: #6f42c1;
+            --accent: #20c997;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --pink-light: #ffdeeb;
+            --purple-light: #e5dbff;
+            --teal-light: #d3f9d8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #fff5f7, #f8f0ff);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23e83e8c" fill-opacity="0.1" d="M0,128L48,149.3C96,171,192,213,288,213.3C384,213,480,171,576,165.3C672,160,768,192,864,197.3C960,203,1056,181,1152,165.3C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom no-repeat;
+            background-size: contain;
+        }
+        
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(232, 62, 140, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(232, 62, 140, 0.4);
+        }
+        
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--pink-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .her-story {
+            background: linear-gradient(135deg, #f3e6ff, #ffdee9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .her-story:before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--purple-light);
+            border-radius: 50%;
+            top: -150px;
+            right: -150px;
+            opacity: 0.3;
+        }
+        
+        .her-story:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--pink-light);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            opacity: 0.3;
+        }
+        
+        .story-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .story-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .story-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .story-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .programmers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .programmer {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 140px;
+        }
+        
+        .programmer h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .demo {
+            text-align: center;
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(45deg, #ffdeeb, #d0ebff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .code-sample {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 15px;
+            padding: 25px;
+            font-family: 'Courier New', monospace;
+            margin: 40px auto;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            overflow-x: auto;
+        }
+        
+        .code-comment {
+            color: #6a9955;
+        }
+        
+        .code-keyword {
+            color: #c586c0;
+        }
+        
+        .code-function {
+            color: #dcdcaa;
+        }
+        
+        .code-string {
+            color: #ce9178;
+        }
+        
+        .code-operator {
+            color: #d4d4d4;
+        }
+        
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            color: var(--pink-light);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+                        <style>
+                            .s0 { fill: none;stroke: #e83e8c;stroke-miterlimit:100;stroke-width: 10 } 
+                            .s1 { fill: none;stroke: #6f42c1;stroke-miterlimit:100;stroke-width: 10 } 
+                            .s2 { fill: #343a40;stroke: #343a40;stroke-miterlimit:100;stroke-width: 10 } 
+                        </style>
+                        <path id="形状 4" fill-rule="evenodd" class="s0" d="m444 354.7l-59.4 258.8c-2.3 9.8-10.5 15.5-18.4 12.7-7.9-2.9-12.5-13.1-10.2-22.9l59.4-258.8c2.3-9.8 10.5-15.5 18.4-12.7 7.9 2.9 12.5 13.1 10.2 22.9zm48.2 46.6l52 64.6c5.8 7.3 5.8 19 0 26.2l-52 64.7c-5.8 7.2-15.2 7.2-21 0-5.8-7.2-5.8-18.9 0-26.2l41.5-51.6-41.5-51.6c-5.8-7.3-5.8-19 0-26.2 5.8-7.2 15.2-7.2 21 0.1zm-163.4 26.1l-41.5 51.6 41.5 51.6c5.8 7.2 5.8 18.9 0 26.1-5.8 7.3-15.2 7.3-21 0l-52-64.6c-5.8-7.3-5.8-19 0-26.2l52-64.7c5.8-7.2 15.2-7.2 21 0 5.8 7.2 5.8 18.9 0 26.2z"/>
+                        <path id="形状 1" fill-rule="evenodd" class="s1" d="m400 742.9l-363.3-263.9 138.8-427.1h449l138.8 427.1z"/>
+                        <path id="形状 2" fill-rule="evenodd" class="s1" d="m285 254c-46.5 0-84-21.5-84-48 0-26.5 37.5-48 84-48 46.5 0 84 21.5 84 48 0 26.5-37.5 48-84 48z"/>
+                        <path id="形状 2 copy" fill-rule="evenodd" class="s1" d="m531 255c-46.5 0-84-21.5-84-48 0-26.5 37.5-48 84-48 46.5 0 84 21.5 84 48 0 26.5-37.5 48-84 48z"/>
+                        <path id="形状 3" fill-rule="evenodd" class="s2" d="m244 232c-14.9 0-27-12.1-27-27 0-14.9 12.1-27 27-27 14.9 0 27 12.1 27 27 0 14.9-12.1 27-27 27z"/>
+                        <path id="形状 3 copy" fill-rule="evenodd" class="s2" d="m489 233c-14.9 0-27-12.1-27-27 0-14.9 12.1-27 27-27 14.9 0 27 12.1 27 27 0 14.9-12.1 27-27 27z"/>
+                    </svg>
+                    <h1>Herthon</h1>
+                </div>
+                <ul class="nav-links">
+                    <li style="padding-top: 18px;" ><a href="#features">特性</a></li>
+                    <li style="padding-top: 18px;" ><a href="#her-story">她的故事</a></li>
+                    <li style="padding-top: 18px;" ><a href="#demo">示例</a></li>
+                    <li style="padding-top: 18px;" ><a href="#download">下载</a></li>
+                    <li><a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main" class="btn">文档</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主横幅 -->
+    <section class="hero">
+        <div class="container">
+            <h2>Herthon：为人设计的下一代编程语言</h2>
+            <p>一门现代、高效、简洁且易学的编程语言，融合了Python的强大功能与人性化设计哲学</p>
+            <a href="#download" class="btn">立即体验 Herthon 3.15</a>
+        </div>
+    </section>
+
+    <!-- 特性部分 -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心特性</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">💖</div>
+                    <h3>人性化设计</h3>
+                    <p>Herthon 更注重人本设计和学习体验，让编程更贴近人类思维，降低学习门槛。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>伦理与可解释性</h3>
+                    <p>天然适合教育、医疗、心理健康等对透明性和可控性要求更高的场景。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌺</div>
+                    <h3>温柔包容的语法</h3>
+                    <p>常见新手错误不再直接报错，而是给出友好提示和建议，创造更包容的学习环境。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>人文模块命名</h3>
+                    <p>鼓励使用 feelings、empathy、mindflow 等更具描述性和情感色彩的模块名。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENIAC女性程序员故事 -->
+    <section id="her-story" class="section her-story">
+        <div class="container">
+            <div class="section-header">
+                <h2>她的故事</h2>
+            </div>
+            <div class="story-content">
+                <div class="story-text">
+                    <h3>编程先驱：ENIAC的女性程序员们</h3>
+                    <p>在20世纪40年代，美国宾夕法尼亚大学开发了世界上第一台通用电子计算机 ENIAC。这项开创性工作的背后，是六位杰出的女性程序员：</p>
+                    
+                    <div class="programmers">
+                        <div class="programmer">
+                            <div class="programmer-icon">👩‍💻</div>
+                            <h4>Jean Bartik</h4>
+                        </div>
+                        <div class="programmer">
+                            <div class="programmer-icon">👩‍💻</div>
+                            <h4>Betty Holberton</h4>
+                        </div>
+                        <div class="programmer">
+                            <div class="programmer-icon">👩‍💻</div>
+                            <h4>Frances Spence</h4>
+                        </div>
+                        <div class="programmer">
+                            <div class="programmer-icon">👩‍💻</div>
+                            <h4>Ruth Teitelbaum</h4>
+                        </div>
+                        <div class="programmer">
+                            <div class="programmer-icon">👩‍💻</div>
+                            <h4>Marlyn Meltzer</h4>
+                        </div>
+                        <div class="programmer">
+                            <div class="programmer-icon">👩‍💻</div>
+                            <h4>Kathleen Antonelli</h4>
+                        </div>
+                    </div>
+                    
+                    <p>这些先驱者不仅为计算机科学奠定了基础，也证明了女性在技术领域的卓越才能。她们的工作在计算机历史上留下了不可磨灭的印记。</p>
+                    <p>Herthon 编程语言正是为了纪念这些先驱者而设计，延续她们对创新和人性化技术的追求。</p>
+                </div>
+                <div class="story-image">
+                    <img src="1.jpg" alt="ENIAC计算机和女性程序员">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 示例部分 -->
+    <section id="demo" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>代码示例</h2>
+            </div>
+            
+            <div class="code-sample">
+                <div class="code-line"><span class="code-comment"># 打印 hello world</span></div>
+                <div class="code-line"><span class="code-function">print</span>(<span class="code-string">"hello world"</span>)</div>
+                <br>
+                <div class="code-line"><span class="code-comment"># while 循环</span></div>
+                <div class="code-line"><span class="code-keyword">while</span> <span class="code-keyword">True</span>:</div>
+                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-number">1</span>)</div>
+                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">break</span></div>
+                <br>
+                <div class="code-line"><span class="code-comment"># 逻辑判断</span></div>
+                <div class="code-line"><span class="code-keyword">if</span> <span class="code-number">1</span> <span class="code-operator">+</span> <span class="code-number">1</span> <span class="code-operator">==</span> <span class="code-number">2</span>:</div>
+                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(<span class="code-function">f</span><span class="code-string">"1+1={1+1}"</span>)</div>
+            </div>
+            
+            <div class="demo">
+                <div class="section-header">
+                    <h2>动态演示</h2>
+                </div>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <!-- 自动播放 -->
+                        <video src="herthon.mp4" controls autoplay loop muted></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载部分 -->
+    <section id="download" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>下载 Herthon</h2>
+            </div>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <h3 style="font-size: 1.8rem; color: var(--secondary); margin-bottom: 20px;">Herthon 3.15.0 alpha 0</h3>
+                <p style="margin-bottom: 30px;">立即下载最新版本的 Herthon，体验人性化编程的魅力。Herthon 与 Python 完全兼容，文件后缀名为 .her</p>
+                <a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main" class="btn">下载 Windows 版本</a>
+                <a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main" class="btn" style="background: linear-gradient(45deg, #20c997, #0ca678); margin-left: 15px;">下载 macOS 版本</a>
+                <a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main" class="btn" style="background: linear-gradient(45deg, #495057, #343a40); margin-left: 15px;">下载 Linux 版本</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">Herthon</div>
+            <p>一门"为人设计"的下一代编程语言</p>
+            
+            <ul class="footer-links">
+                <li><a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main">文档</a></li>
+                <li><a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main">教程</a></li>
+                <li><a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main">社区</a></li>
+                <li><a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main">GitHub</a></li>
+                <li><a href="https://github.com/Deng-Xian-Sheng/cherthon/tree/main">贡献指南</a></li>
+            </ul>
+            
+            <p style="max-width: 600px; margin: 0 auto; color: #bbb;">
+                Herthon 部分代码参考自 <a href="https://github.com/python/cpython" style="color: #e83e8c;">cpython</a>。
+                我们致力于创造一个更人性化、更具包容性的编程环境，向计算机科学史上的女性先驱致敬。
+            </p>
+            
+            <div class="copyright">
+                &copy; 2025 Herthon 项目组 | 致敬 ENIAC 女性程序员
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
