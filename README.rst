@@ -1,4 +1,18 @@
-![Herthon logo](https://raw.githubusercontent.com/Deng-Xian-Sheng/cherthon/refs/heads/main/icon.svg)
+
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+	<title>新建项目</title>
+	<style>
+		.s0 { fill: none;stroke: #ff0000;stroke-miterlimit:100;stroke-width: 10 } 
+		.s1 { fill: none;stroke: #ff00ff;stroke-miterlimit:100;stroke-width: 10 } 
+		.s2 { fill: #000000;stroke: #000000;stroke-miterlimit:100;stroke-width: 10 } 
+	</style>
+	<path id="形状 4" fill-rule="evenodd" class="s0" d="m444 354.7l-59.4 258.8c-2.3 9.8-10.5 15.5-18.4 12.7-7.9-2.9-12.5-13.1-10.2-22.9l59.4-258.8c2.3-9.8 10.5-15.5 18.4-12.7 7.9 2.9 12.5 13.1 10.2 22.9zm48.2 46.6l52 64.6c5.8 7.3 5.8 19 0 26.2l-52 64.7c-5.8 7.2-15.2 7.2-21 0-5.8-7.2-5.8-18.9 0-26.2l41.5-51.6-41.5-51.6c-5.8-7.3-5.8-19 0-26.2 5.8-7.2 15.2-7.2 21 0.1zm-163.4 26.1l-41.5 51.6 41.5 51.6c5.8 7.2 5.8 18.9 0 26.1-5.8 7.3-15.2 7.3-21 0l-52-64.6c-5.8-7.3-5.8-19 0-26.2l52-64.7c5.8-7.2 15.2-7.2 21 0 5.8 7.2 5.8 18.9 0 26.2z"/>
+	<path id="形状 1" fill-rule="evenodd" class="s1" d="m400 742.9l-363.3-263.9 138.8-427.1h449l138.8 427.1z"/>
+	<path id="形状 2" fill-rule="evenodd" class="s1" d="m285 254c-46.5 0-84-21.5-84-48 0-26.5 37.5-48 84-48 46.5 0 84 21.5 84 48 0 26.5-37.5 48-84 48z"/>
+	<path id="形状 2 copy" fill-rule="evenodd" class="s1" d="m531 255c-46.5 0-84-21.5-84-48 0-26.5 37.5-48 84-48 46.5 0 84 21.5 84 48 0 26.5-37.5 48-84 48z"/>
+	<path id="形状 3" fill-rule="evenodd" class="s2" d="m244 232c-14.9 0-27-12.1-27-27 0-14.9 12.1-27 27-27 14.9 0 27 12.1 27 27 0 14.9-12.1 27-27 27z"/>
+	<path id="形状 3 copy" fill-rule="evenodd" class="s2" d="m489 233c-14.9 0-27-12.1-27-27 0-14.9 12.1-27 27-27 14.9 0 27 12.1 27 27 0 14.9-12.1 27-27 27z"/>
+</svg>
 
 This is Herthon version 3.15.0 alpha 0
 =====================================
