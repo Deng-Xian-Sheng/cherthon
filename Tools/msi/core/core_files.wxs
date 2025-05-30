@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <ComponentGroup Id="core_dll">
+            <Component Id="herthon_stable.dll" Directory="InstallDirectory" Guid="*">
+                <File Id="herthon_stable.dll" Name="herthon$(var.MajorVersionNumber).dll" KeyPath="yes" />
+            </Component>
+            <Component Id="herthon.dll" Directory="InstallDirectory" Guid="*">
+                <File Id="herthon.dll" Name="herthon$(var.MajorVersionNumber)$(var.MinorVersionNumber).dll" KeyPath="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="core_symbols">
+            <Component Id="herthon.pdb" Directory="InstallDirectory" Guid="*">
+                <File Id="herthon.pdb" Name="herthon$(var.MajorVersionNumber)$(var.MinorVersionNumber).pdb" KeyPath="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="core_dll_d">
+            <Component Id="herthon_stable_d.dll" Directory="InstallDirectory" Guid="*">
+                <File Id="herthon_stable_d.dll" Name="herthon$(var.MajorVersionNumber)_d.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="herthon_d.dll" Directory="InstallDirectory" Guid="*">
+                <File Id="herthon_d.dll" Name="herthon$(var.MajorVersionNumber)$(var.MinorVersionNumber)_d.dll" KeyPath="yes" />
+                <File Id="herthon_d.pdb" Name="herthon$(var.MajorVersionNumber)$(var.MinorVersionNumber)_d.pdb" KeyPath="no" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

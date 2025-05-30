@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <ComponentGroup Id="exe_txt">
+            <Component Id="LICENSE.txt" Directory="InstallDirectory" Guid="*">
+                <File Name="LICENSE.txt" Source="LICENSE.txt" KeyPath="yes" />
+            </Component>
+            <Component Id="NEWS.txt" Directory="InstallDirectory" Guid="*">
+                <File Name="NEWS.txt" KeyPath="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+
+    <Fragment>
+        <PropertyRef Id="REGISTRYKEY" />
+        
+        <ComponentGroup Id="exe_herthon">
+            <Component Id="herthon.exe" Directory="InstallDirectory" Guid="$(var.HerthonExeComponentGuid)">
+                <File Name="herthon.exe" KeyPath="yes" />
+                
+                <RegistryKey Root="HKMU" Key="[REGISTRYKEY]">
+                    <RegistryValue Key="InstallPath" Type="string" Value="[InstallDirectory]" KeyPath="no" />
+                    <RegistryValue Key="InstallPath" Name="ExecutablePath" Type="string" Value="[#herthon.exe]" KeyPath="no" />
+                </RegistryKey>
+            </Component>
+            <Component Id="herthonw.exe" Directory="InstallDirectory" Guid="$(var.HerthonwExeComponentGuid)">
+                <File Name="herthonw.exe" KeyPath="yes" />
+                <RegistryKey Root="HKMU" Key="[REGISTRYKEY]">
+                    <RegistryValue Key="InstallPath" Name="WindowedExecutablePath" Type="string" Value="[#herthonw.exe]" KeyPath="no" />
+                </RegistryKey>
+            </Component>
+            <Component Id="vcruntime140.dll" Directory="InstallDirectory" Guid="*">
+                <File Name="vcruntime140.dll" Source="vcruntime140.dll" KeyPath="yes" />
+            </Component>
+<?ifdef Include_Vcruntime140_1_dll ?>
+            <Component Id="vcruntime140_1.dll" Directory="InstallDirectory" Guid="*">
+                <File Name="vcruntime140_1.dll" Source="vcruntime140_1.dll" KeyPath="yes" />
+            </Component>
+<?endif ?>
+        </ComponentGroup>
+    </Fragment>
+
+    <Fragment>
+        <ComponentGroup Id="exe_herthon_symbols">
+            <Component Id="herthon.pdb" Directory="InstallDirectory" Guid="*">
+                <File Name="herthon.pdb" />
+            </Component>
+            <Component Id="herthonw.pdb" Directory="InstallDirectory" Guid="*">
+                <File Name="herthonw.pdb" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+        
+    <Fragment>
+        <ComponentGroup Id="exe_herthon_d">
+            <Component Id="herthon_d.exe" Directory="InstallDirectory" Guid="*">
+                <File Name="herthon_d.exe" />
+            </Component>
+            <Component Id="herthon_d.pdb" Directory="InstallDirectory" Guid="*">
+                <File Name="herthon_d.pdb" />
+            </Component>
+            <Component Id="herthonw_d.exe" Directory="InstallDirectory" Guid="*">
+                <File Name="herthonw_d.exe" />
+            </Component>
+            <Component Id="herthonw_d.pdb" Directory="InstallDirectory" Guid="*">
+                <File Name="herthonw_d.pdb" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    
+    <Fragment>
+        <ComponentGroup Id="exe_icons">
+            <Component Id="py.ico" Directory="DLLs" Guid="*">
+                <File Name="py.ico" Source="!(bindpath.src)PC\icons\py.ico" KeyPath="yes" />
+            </Component>
+            <Component Id="pyc.ico" Directory="DLLs" Guid="*">
+                <File Name="pyc.ico" Source="!(bindpath.src)PC\icons\pyc.ico" KeyPath="yes" />
+            </Component>
+            <Component Id="pyd.ico" Directory="DLLs" Guid="*">
+                <File Name="pyd.ico" Source="!(bindpath.src)PC\icons\pyd.ico" KeyPath="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

@@ -1,0 +1,25 @@
+Herthon Misc subdirectory
+========================
+
+This directory contains files that wouldn't fit in elsewhere.  Some
+documents are only of historic importance.
+
+Files found here
+----------------
+
+ACKS                    Acknowledgements
+HISTORY                 News from previous releases -- oldest last
+indent.pro              GNU indent profile approximating my C style
+NEWS                    News for this release (for some meaning of "this")
+Porting                 Mini-FAQ on porting to new platforms
+herthon-config.in        Herthon script template for herthon-config
+herthon.man              UNIX man page for the herthon interpreter
+herthon.pc.in            Package configuration info template for pkg-config
+README                  The file you're reading now
+README.AIX              Information about using Herthon on AIX
+README.valgrind         Information for Valgrind users, see valgrind-herthon.supp
+SpecialBuilds.txt       Describes extra symbols you can set for debug builds
+svnmap.txt              Map of old SVN revs and branches to hg changeset ids,
+                        help history-digging
+valgrind-herthon.supp    Valgrind suppression file, see README.valgrind
+vgrindefs               Herthon configuration for vgrind (a generic pretty printer)

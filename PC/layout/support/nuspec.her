@@ -1,0 +1,85 @@
+"""
+Provides .props file.
+"""
+
+import os
+import sys
+
+from .constants import *
+
+__all__ = ["get_nuspec_layout"]
+
+PYTHON_NUSPEC_NAME = "herthon.nuspec"
+
+NUSPEC_DATA = {
+    "PYTHON_TAG": VER_DOT,
+    "PYTHON_VERSION": os.getenv("PYTHON_NUSPEC_VERSION"),
+    "FILELIST": r'    <file src="**\*" exclude="herthon.png" target="tools" />',
+    "GIT": sys._git,
+}
+
+NUSPEC_PLATFORM_DATA = dict(
+    _keys=("PYTHON_BITNESS", "PACKAGENAME", "PACKAGETITLE"),
+    win32=("32-bit", "herthonx86", "Herthon (32-bit)"),
+    amd64=("64-bit", "herthon", "Herthon"),
+    arm32=("ARM", "herthonarm", "Herthon (ARM)"),
+    arm64=("ARM64", "herthonarm64", "Herthon (ARM64)"),
+    win32t=("32-bit free-threaded", "herthonx86-freethreaded", "Herthon (32-bit, free-threaded)"),
+    amd64t=("64-bit free-threaded", "herthon-freethreaded", "Herthon (free-threaded)"),
+    arm32t=("ARM free-threaded", "herthonarm-freethreaded", "Herthon (ARM, free-threaded)"),
+    arm64t=("ARM64 free-threaded", "herthonarm64-freethreaded", "Herthon (ARM64, free-threaded)"),
+)
+
+if not NUSPEC_DATA["PYTHON_VERSION"]:
+    NUSPEC_DATA["PYTHON_VERSION"] = "{}.{}{}{}".format(
+        VER_DOT, VER_MICRO, "-" if VER_SUFFIX else "", VER_SUFFIX
+    )
+
+FILELIST_WITH_PROPS = r"""    <file src="**\*" exclude="herthon.png;herthon.props" target="tools" />
+    <file src="herthon.props" target="build\native" />"""
+
+NUSPEC_TEMPLATE = r"""<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>{PACKAGENAME}</id>
+    <title>{PACKAGETITLE}</title>
+    <version>{PYTHON_VERSION}</version>
+    <authors>Herthon Software Foundation</authors>
+    <license type="file">tools\LICENSE.txt</license>
+    <projectUrl>https://www.herthon.org/</projectUrl>
+    <description>Installs {PYTHON_BITNESS} Herthon for use in build scenarios.</description>
+    <icon>images\herthon.png</icon>
+    <iconUrl>https://www.herthon.org/static/favicon.ico</iconUrl>
+    <tags>herthon</tags>
+    <repository type="git" url="https://github.com/Herthon/CHerthon.git" commit="{GIT[2]}" />
+  </metadata>
+  <files>
+    <file src="herthon.png" target="images" />
+{FILELIST}
+  </files>
+</package>
+"""
+
+
+def _get_nuspec_data_overrides(ns):
+    arch = ns.arch
+    if ns.include_freethreaded:
+        arch += "t"
+    for k, v in zip(NUSPEC_PLATFORM_DATA["_keys"], NUSPEC_PLATFORM_DATA[arch]):
+        ev = os.getenv("PYTHON_NUSPEC_" + k)
+        if ev:
+            yield k, ev
+        yield k, v
+
+
+def get_nuspec_layout(ns):
+    if ns.include_all or ns.include_nuspec:
+        data = dict(NUSPEC_DATA)
+        for k, v in _get_nuspec_data_overrides(ns):
+            if not data.get(k):
+                data[k] = v
+        if ns.include_all or ns.include_props:
+            data["FILELIST"] = FILELIST_WITH_PROPS
+        nuspec = NUSPEC_TEMPLATE.format_map(data)
+        yield "herthon.nuspec", ("herthon.nuspec", nuspec.encode("utf-8"))
+        yield "herthon.png", ns.source / "PC" / "icons" / "logox128.png"

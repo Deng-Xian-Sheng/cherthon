@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+    <String Id="LCID">1033</String>
+    <String Id="Culture">en-us</String>
+    <String Id="ProductName">Herthon Launcher</String>
+    <String Id="Title">Herthon Launcher</String>
+    <String Id="Description">Herthon Launcher</String>
+    <String Id="Manufacturer">Herthon Software Foundation</String>
+    <String Id="NoDowngrade">A newer version of the Herthon launcher is already installed.</String>
+    <String Id="NoTargetDir">The TARGETDIR variable must be provided when invoking this installer.</String>
+    <String Id="HerthonFileDescription">Herthon File</String>
+    <String Id="HerthonNoConFileDescription">Herthon File (no console)</String>
+    <String Id="HerthonCompiledFileDescription">Compiled Herthon File</String>
+    <String Id="HerthonExtensionDescription">Herthon Extension Module</String>
+    <String Id="HerthonArchiveFileDescription">Herthon Zip Application File</String>
+    <String Id="HerthonNoConArchiveFileDescription">Herthon Zip Application File (no console)</String>
+</WixLocalization>

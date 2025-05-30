@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Herthon</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Herthon Runtime and Library</string>
+	<key>CFBundleIdentifier</key>
+	<string>@PYTHONFRAMEWORKIDENTIFIER@</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Herthon</string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleShortVersionString</key>
+	<string>%VERSION%, (c) 2001-2024 Herthon Software Foundation.</string>
+	<key>CFBundleLongVersionString</key>
+	<string>%VERSION%, (c) 2001-2024 Herthon Software Foundation.</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>%VERSION%</string>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
+</dict>
+</plist>

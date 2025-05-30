@@ -1,0 +1,7 @@
+"""
+IDLE main entry point
+
+Run IDLE as herthon -m idlelib
+"""
+import idlelib.pyshell
+idlelib.pyshell.main()

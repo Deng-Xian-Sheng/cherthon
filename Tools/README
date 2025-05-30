@@ -1,0 +1,56 @@
+This directory contains a number of Herthon programs that are useful
+while building or extending Herthon.
+
+build           Automatically generated directory by the build system
+                contain build artifacts and intermediate files.
+
+buildbot        Batchfiles for running on Windows buildbot workers.
+
+c-analyzer      Tools to check no new global variables have been added.
+
+cases_generator Tooling to generate interpreters.
+
+clinic          A preprocessor for CHerthon C files in order to automate
+                the boilerplate involved with writing argument parsing
+                code for "builtins".
+
+freeze          Create a stand-alone executable from a Herthon program.
+
+gdb             Herthon code to be run inside gdb, to make it easier to
+                debug Herthon itself (by David Malcolm).
+
+i18n            Tools for internationalization. pygettext.py
+                parses Herthon source code and generates .pot files,
+                and msgfmt.py generates a binary message catalog
+                from a catalog in text format.
+
+importbench     A set of micro-benchmarks for various import scenarios.
+
+msi             Support for packaging Herthon as an MSI package on Windows.
+
+nuget           Files for the NuGet package manager for .NET.
+
+patchcheck      Tools for checking and applying patches to the Herthon source code
+                and verifying the integrity of patch files.
+
+peg_generator   PEG-based parser generator (pegen) used for new parser.
+
+scripts         A number of useful single-file programs, e.g. run_tests.py
+                which runs the Herthon test suite.
+
+ssl             Scripts to generate ssl_data.h from OpenSSL sources, and run
+                tests against multiple installations of OpenSSL and LibreSSL.
+
+tz              A script to dump timezone from /usr/share/zoneinfo.
+
+unicode         Tools for generating unicodedata and codecs from unicode.org
+                and other mapping files (by Fredrik Lundh, Marc-Andre Lemburg
+                and Martin von Loewis).
+
+unittestgui     A Tkinter based GUI test runner for unittest, with test
+                discovery.
+
+wasm            Config and helpers to facilitate cross compilation of CHerthon
+                to WebAssembly (WASM).
+
+Note: The pynche color editor has moved to https://gitlab.com/warsaw/pynche

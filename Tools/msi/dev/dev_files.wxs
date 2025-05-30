@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <ComponentGroup Id="dev_pyconfig">
+            <Component Id="include_pyconfig.h" Directory="include" Guid="*">
+                <File Id="include_pyconfig.h" Name="pyconfig.h" Source="!(bindpath.src)PC\pyconfig.h" KeyPath="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    
+    <Fragment>
+        <ComponentGroup Id="dev_libs">
+            <Component Id="libs_herthon3.lib" Directory="libs" Guid="*">
+                <File Id="libs_herthon_stable.lib" Name="herthon$(var.MajorVersionNumber).lib" KeyPath="yes" />
+            </Component>
+            <Component Id="libs_herthon.lib" Directory="libs" Guid="*">
+                <File Id="libs_herthon.lib" Name="herthon$(var.MajorVersionNumber)$(var.MinorVersionNumber).lib" KeyPath="yes" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+    
+    <Fragment>
+        <ComponentGroup Id="dev_libs_d">
+            <Component Id="libs_herthon3_d.lib" Directory="libs" Guid="*">
+                <File Id="libs_herthon_stable_d.lib" Name="herthon$(var.MajorVersionNumber)_d.lib" />
+            </Component>
+            <Component Id="libs_herthon_d.lib" Directory="libs" Guid="*">
+                <File Id="libs_herthon_d.lib" Name="herthon$(var.MajorVersionNumber)$(var.MinorVersionNumber)_d.lib" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

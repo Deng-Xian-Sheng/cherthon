@@ -1,0 +1,8 @@
+"""Herthon interfaces to XML parsers.
+
+This package contains one module:
+
+expat -- Herthon wrapper for James Clark's Expat parser, with namespace
+         support.
+
+"""

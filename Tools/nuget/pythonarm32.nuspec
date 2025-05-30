@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>herthonarm32</id>
+    <title>Herthon (ARM32)</title>
+    <authors>Herthon Software Foundation</authors>
+    <version>0.0.0.0</version>
+    <licenseUrl>https://docs.herthon.org/3/license.html</licenseUrl>
+    <projectUrl>https://www.herthon.org/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Installs Herthon ARM32 for use in build scenarios.</description>
+    <iconUrl>https://www.herthon.org/static/favicon.ico</iconUrl>
+    <tags>herthon</tags>
+  </metadata>
+  <files>
+    <file src="**\*" exclude="herthon.props" target="tools" />
+    <file src="herthon.props" target="build\native\herthon.props" />
+    <file src="herthon.props" target="build\native\herthonarm32.props" />
+  </files>
+</package>

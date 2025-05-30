@@ -1,0 +1,13 @@
+# See: man pkg-config
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: Herthon
+Description: Embed Herthon into an application
+Requires:
+Version: @VERSION@
+Libs.private: @LIBS@
+Libs: -L${libdir} -lherthon@VERSION@@ABIFLAGS@
+Cflags: -I${includedir}/herthon@VERSION@@ABIFLAGS@

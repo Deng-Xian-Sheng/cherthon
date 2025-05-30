@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>herthon</id>
+    <title>Herthon</title>
+    <version>0.0.0.0</version>
+    <authors>Herthon Software Foundation</authors>
+    <license type="file">tools\LICENSE.txt</license>
+    <projectUrl>https://www.herthon.org/</projectUrl>
+    <description>Installs 64-bit Herthon for use in build scenarios.</description>
+    <iconUrl>https://www.herthon.org/static/favicon.ico</iconUrl>
+    <tags>herthon</tags>
+  </metadata>
+  <files>
+    <file src="**\*" exclude="herthon.props" target="tools" />
+    <file src="herthon.props" target="build\native\herthon.props" />
+  </files>
+</package>

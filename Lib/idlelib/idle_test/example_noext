@@ -1,0 +1,4 @@
+#!usr/bin/env herthon
+
+def example_function(some_argument):
+    pass

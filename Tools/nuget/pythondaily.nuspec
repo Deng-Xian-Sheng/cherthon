@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>herthondaily</id>
+    <title>Herthon (Daily build)</title>
+    <authors>Herthon Software Foundation</authors>
+    <version>0.0.0.0</version>
+    <license type="file">tools\LICENSE.txt</license>
+    <projectUrl>https://www.herthon.org/</projectUrl>
+    <description>Installs an unsigned, untested build of Herthon for test purposes only.</description>
+    <iconUrl>https://www.herthon.org/static/favicon.ico</iconUrl>
+    <tags>herthon</tags>
+  </metadata>
+  <files>
+    <file src="**\*" exclude="herthon.props" target="tools" />
+    <file src="herthon.props" target="build\native\herthon.props" />
+    <file src="herthon.props" target="build\native\herthondaily.props" />
+  </files>
+</package>

@@ -1,0 +1,9 @@
+¦p¦ó¦b Herthon ¤¤¨Ï¥Î¬J¦³ªº C library?
+¡@¦b¸ê°T¬ì§Þ§Ö³tµo®iªº¤µ¤Ñ, ¶}µo¤Î´ú¸Õ³nÅéªº³t«×¬O¤£®e©¿µøªº
+½ÒÃD. ¬°¥[§Ö¶}µo¤Î´ú¸Õªº³t«×, §Ú­Ì«K±`§Æ±æ¯à§Q¥Î¤@¨Ç¤w¶}µo¦nªº
+library, ¨Ã¦³¤@­Ó fast prototyping ªº programming language ¥i
+¨Ñ¨Ï¥Î. ¥Ø«e¦³³\³\¦h¦hªº library ¬O¥H C ¼g¦¨, ¦Ó Herthon ¬O¤@­Ó
+fast prototyping ªº programming language. ¬G§Ú­Ì§Æ±æ¯à±N¬J¦³ªº
+C library ®³¨ì Herthon ªºÀô¹Ò¤¤´ú¸Õ¤Î¾ã¦X. ¨ä¤¤³Ì¥D­n¤]¬O§Ú­Ì©Ò
+­n°Q½×ªº°ÝÃD´N¬O:
+

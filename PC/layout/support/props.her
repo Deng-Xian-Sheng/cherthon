@@ -1,0 +1,95 @@
+"""
+Provides .props file.
+"""
+
+import os
+
+from .constants import *
+
+__all__ = ["get_props_layout"]
+
+PYTHON_PROPS_NAME = "herthon.props"
+
+PROPS_DATA = {
+    "PYTHON_TAG": VER_DOT,
+    "PYTHON_VERSION": os.getenv("PYTHON_NUSPEC_VERSION"),
+    "PYTHON_PLATFORM": os.getenv("PYTHON_PROPS_PLATFORM"),
+    "PYTHON_TARGET": "",
+}
+
+if not PROPS_DATA["PYTHON_VERSION"]:
+    PROPS_DATA["PYTHON_VERSION"] = "{}.{}{}{}".format(
+        VER_DOT, VER_MICRO, "-" if VER_SUFFIX else "", VER_SUFFIX
+    )
+
+PROPS_DATA["PYTHON_TARGET"] = "_GetHerthonRuntimeFilesDependsOn{}{}_{}".format(
+    VER_MAJOR, VER_MINOR, PROPS_DATA["PYTHON_PLATFORM"]
+)
+
+PROPS_TEMPLATE = r"""<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="$(Platform) == '{PYTHON_PLATFORM}'">
+    <HerthonHome Condition="$(HerthonHome) == ''">$([System.IO.Path]::GetFullPath("$(MSBuildThisFileDirectory)\..\..\tools"))</HerthonHome>
+    <HerthonInclude>$(HerthonHome)\include</HerthonInclude>
+    <HerthonLibs>$(HerthonHome)\libs</HerthonLibs>
+    <HerthonTag>{PYTHON_TAG}</HerthonTag>
+    <HerthonVersion>{PYTHON_VERSION}</HerthonVersion>
+
+    <IncludeHerthonExe Condition="$(IncludeHerthonExe) == ''">true</IncludeHerthonExe>
+    <IncludeVEnv Condition="$(IncludeVEnv) == ''">false</IncludeVEnv>
+
+    <GetHerthonRuntimeFilesDependsOn>{PYTHON_TARGET};$(GetHerthonRuntimeFilesDependsOn)</GetHerthonRuntimeFilesDependsOn>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup Condition="$(Platform) == '{PYTHON_PLATFORM}'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(HerthonInclude);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(HerthonLibs);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <Target Name="GetHerthonRuntimeFiles" Returns="@(HerthonRuntime)" DependsOnTargets="$(GetHerthonRuntimeFilesDependsOn)" />
+
+  <Target Name="{PYTHON_TARGET}" Returns="@(HerthonRuntime)">
+    <ItemGroup>
+      <_HerthonRuntimeExe Include="$(HerthonHome)\herthon*.dll" />
+      <_HerthonRuntimeExe Include="$(HerthonHome)\herthon*.exe" Condition="$(IncludeHerthonExe) == 'true'" />
+      <_HerthonRuntimeExe>
+        <Link>%(Filename)%(Extension)</Link>
+      </_HerthonRuntimeExe>
+      <_HerthonRuntimeDlls Include="$(HerthonHome)\DLLs\*.pyd" />
+      <_HerthonRuntimeDlls Include="$(HerthonHome)\DLLs\*.dll" />
+      <_HerthonRuntimeDlls>
+        <Link>DLLs\%(Filename)%(Extension)</Link>
+      </_HerthonRuntimeDlls>
+      <_HerthonRuntimeLib Include="$(HerthonHome)\Lib\**\*" Exclude="$(HerthonHome)\Lib\**\*.pyc;$(HerthonHome)\Lib\site-packages\**\*" />
+      <_HerthonRuntimeLib Remove="$(HerthonHome)\Lib\ensurepip\**\*" Condition="$(IncludeVEnv) != 'true'" />
+      <_HerthonRuntimeLib Remove="$(HerthonHome)\Lib\venv\**\*" Condition="$(IncludeVEnv) != 'true'" />
+      <_HerthonRuntimeLib>
+        <Link>Lib\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      </_HerthonRuntimeLib>
+      <HerthonRuntime Include="@(_HerthonRuntimeExe);@(_HerthonRuntimeDlls);@(_HerthonRuntimeLib)" />
+    </ItemGroup>
+
+    <Message Importance="low" Text="Collected Herthon runtime from $(HerthonHome):%0D%0A@(HerthonRuntime->'  %(Link)','%0D%0A')" />
+  </Target>
+</Project>
+"""
+
+
+def get_props_layout(ns):
+    if ns.include_all or ns.include_props:
+        # TODO: Filter contents of props file according to included/excluded items
+        d = dict(PROPS_DATA)
+        if not d.get("PYTHON_PLATFORM"):
+            d["PYTHON_PLATFORM"] = {
+                "win32": "Win32",
+                "amd64": "X64",
+                "arm32": "ARM",
+                "arm64": "ARM64",
+            }[ns.arch]
+        props = PROPS_TEMPLATE.format_map(d)
+        yield "herthon.props", ("herthon.props", props.encode("utf-8"))

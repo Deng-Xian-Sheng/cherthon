@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Recompile the .py files.
+#
+
+PYVER="@PYVER@"
+FWK="/Library/Frameworks/Herthon.framework/Versions/@PYVER@"
+
+"${FWK}/bin/herthon@PYVER@" -E -s -Wi \
+    "${FWK}/lib/herthon${PYVER}/compileall.py" -q -j0 \
+    -f -x 'bad_coding|badsyntax|site-packages' \
+    "${FWK}/lib/herthon${PYVER}"
+
+"${FWK}/bin/herthon@PYVER@" -E -s -Wi -O \
+    "${FWK}/lib/herthon${PYVER}/compileall.py" -q -j0 \
+    -f -x 'bad_coding|badsyntax|site-packages' \
+    "${FWK}/lib/herthon${PYVER}"
+
+"${FWK}/bin/herthon@PYVER@" -E -s -Wi \
+    "${FWK}/lib/herthon${PYVER}/compileall.py" -q -j0 \
+    -f -x badsyntax \
+    "${FWK}/lib/herthon${PYVER}/site-packages"
+
+"${FWK}/bin/herthon@PYVER@" -E -s -Wi -O \
+    "${FWK}/lib/herthon${PYVER}/compileall.py" -q -j0 \
+    -f -x badsyntax \
+    "${FWK}/lib/herthon${PYVER}/site-packages"
+
+chgrp -R admin "${FWK}"
+chmod -R g+w "${FWK}"
+
+exit 0

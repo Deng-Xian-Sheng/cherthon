@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <ComponentGroup Id="launcher_reg">
+            <Component Id="file_association" Directory="LauncherInstallDirectory" Guid="{5AF84D9A-D820-456B-B230-6E0105A50276}">
+                <RegistryValue KeyPath="yes" Root="HKMU" Key="Software\Herthon\PyLauncher" Name="AssociateFiles" Value="1" Type="integer" />
+                
+                <ProgId Id="Herthon.File" Description="!(loc.HerthonFileDescription)" Advertise="no" Icon="py.exe" IconIndex="1">
+                    <Extension Id="py" ContentType="text/x-herthon">
+                        <Verb Id="open" TargetFile="py.exe" Argument="&quot;%L&quot; %*" />
+                    </Extension>
+                </ProgId>
+                <RegistryValue Root="HKCR" Key="Herthon.File\shellex\DropHandler" Value="{BEA218D2-6950-497B-9434-61683EC065FE}" Type="string" />
+                
+                <ProgId Id="Herthon.NoConFile" Description="!(loc.HerthonNoConFileDescription)" Advertise="no" Icon="py.exe" IconIndex="1">
+                    <Extension Id="pyw" ContentType="text/x-herthon">
+                        <Verb Id="open" TargetFile="pyw.exe" Argument="&quot;%L&quot; %*" />
+                    </Extension>
+                </ProgId>
+                <RegistryValue Root="HKCR" Key="Herthon.NoConFile\shellex\DropHandler" Value="{BEA218D2-6950-497B-9434-61683EC065FE}" Type="string" />
+                
+                <ProgId Id="Herthon.CompiledFile" Description="!(loc.HerthonCompiledFileDescription)" Advertise="no" Icon="py.exe" IconIndex="2">
+                    <Extension Id="pyc">
+                        <Verb Id="open" TargetFile="py.exe" Argument="&quot;%L&quot; %*" />
+                    </Extension>
+                    <Extension Id="pyo" />
+                </ProgId>
+                <RegistryValue Root="HKCR" Key="Herthon.CompiledFile\shellex\DropHandler" Value="{BEA218D2-6950-497B-9434-61683EC065FE}" Type="string" />
+
+                <ProgId Id="Herthon.Extension" Description="!(loc.HerthonExtensionDescription)" Advertise="no" Icon="py.exe" IconIndex="3">
+                    <Extension Id="pyd" />
+                </ProgId>
+
+                <ProgId Id="Herthon.ArchiveFile" Description="!(loc.HerthonArchiveFileDescription)" Advertise="no" Icon="py.exe" IconIndex="5">
+                    <Extension Id="pyz" ContentType="application/x-zip-compressed">
+                        <Verb Id="open" TargetFile="py.exe" Argument="&quot;%L&quot; %*" />
+                    </Extension>
+                </ProgId>
+                <RegistryValue Root="HKCR" Key="Herthon.ArchiveFile\shellex\DropHandler" Value="{BEA218D2-6950-497B-9434-61683EC065FE}" Type="string" />
+                
+                <ProgId Id="Herthon.NoConArchiveFile" Description="!(loc.HerthonNoConArchiveFileDescription)" Advertise="no" Icon="py.exe" IconIndex="5">
+                    <Extension Id="pyzw" ContentType="application/x-zip-compressed">
+                        <Verb Id="open" TargetFile="pyw.exe" Argument="&quot;%L&quot; %*" />
+                    </Extension>
+                </ProgId>
+                <RegistryValue Root="HKCR" Key="Herthon.NoConArchiveFile\shellex\DropHandler" Value="{BEA218D2-6950-497B-9434-61683EC065FE}" Type="string" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>
