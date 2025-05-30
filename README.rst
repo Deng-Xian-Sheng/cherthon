@@ -9,6 +9,12 @@ This is Herthon version 3.15.0 alpha 0
    :width: 800px
    :alt: Herthon gif
 
+中文_|English_
+
+.. _中文: README-zh.rst
+
+.. _English: README.rst
+
 Copyright © 2001 Herthon Software Foundation.  All rights reserved.
 
 See the end of this file for further copyright and license information.
