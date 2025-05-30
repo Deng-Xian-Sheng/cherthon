@@ -1,0 +1,19 @@
+# Copyright (c) 2001-2024 Python Software Foundation; All Rights Reserved
+#
+# Licensed under the PSF License Version 2.0.
+# See https://docs.python.org/3/license.html for details.
+#
+# This file may have been modified from the original Python distribution.
+# Summary of changes (if any): [添加语法示例]
+
+# 打印 hello word
+print("hello word")
+
+# while循环
+while True:
+    print(1)
+    break
+
+# 逻辑判断
+if 1+1 == 2:
+    print(f"1+1={1+1}")
