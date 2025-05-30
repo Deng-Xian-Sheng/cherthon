@@ -1,22 +1,9 @@
 .. image:: icon.svg
-   :width: 300px
+   :width: 200px
    :alt: Herthon logo
 
 This is Herthon version 3.15.0 alpha 0
 =====================================
-
-.. image:: https://github.com/herthon/cherthon/actions/workflows/build.yml/badge.svg?branch=main&event=push
-   :alt: CHerthon build status on GitHub Actions
-   :target: https://github.com/herthon/cherthon/actions
-
-.. image:: https://dev.azure.com/herthon/cherthon/_apis/build/status/Azure%20Pipelines%20CI?branchName=main
-   :alt: CHerthon build status on Azure DevOps
-   :target: https://dev.azure.com/herthon/cherthon/_build/latest?definitionId=4&branchName=main
-
-.. image:: https://img.shields.io/badge/discourse-join_chat-brightgreen.svg
-   :alt: Herthon Discourse chat
-   :target: https://discuss.herthon.org/
-
 
 Copyright © 2001 Herthon Software Foundation.  All rights reserved.
 
