@@ -5,7 +5,7 @@ This is Herthon version 3.15.0 alpha 0
    :width: 300px
    :alt: Herthon logo
 
-Copyright © 2025 Herthon Software Foundation.  All rights reserved.
+Copyright © 2001 Herthon Software Foundation.  All rights reserved.
 
 See the end of this file for further copyright and license information.
 
