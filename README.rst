@@ -1,5 +1,5 @@
 .. image:: icon.svg
-   :width: 100px
+   :width: 500px
    :alt: Herthon logo
 
 This is Herthon version 3.15.0 alpha 0
