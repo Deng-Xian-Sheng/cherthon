@@ -45,7 +45,7 @@ Herthon 示例代码
 ::
 
     # 打印 hello world
-    print("hello world")
+    print("shello world")
 
     # while 循环
     while True:
